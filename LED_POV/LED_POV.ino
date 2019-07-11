@@ -1,5 +1,5 @@
 // Enter values of the pins to which LED's are connected, in order from the inner most to the outer most.
-int LED_pins[] = {1,2,3,4,5,6,7,8}
+int LED_pins[] = {1,2,3,4,5,6,7,8};
 
 // The following arrays contain the patter at which LED's must turn on or off for displaying particular characters.
 const unsigned char char_code[95][5] = {
@@ -110,7 +110,7 @@ int res = 50;
 float time_del = time_per/res;
 
 // This string is the one that will be displayed.
-char message[]="Hello world";
+String message="Hello world";
 
 // This integer stores number of spaces left empty(in number of LED columns), after the message.
 int empty_space = res - (5 * message.length());
@@ -139,7 +139,9 @@ void print_char(char ch)
 	{ch=35;}
 	
 	// For all characters, their code is stored in an index 32 lower than their ASCII value(because our array includes character from code 32 only)
-	unsigned char code[5] = char_code[ch - 32];
+	unsigned char code[5];
+	for(int i = 0; i < 5; i++)
+	  code[i] = char_code[ch - 32][i];
 	
 	// The following code displays the character, each iteration displaying one column.
 	for(int i = 4; i > -1; i--)
@@ -147,7 +149,7 @@ void print_char(char ch)
 		byte col_code = code[i];
 		for(int j = 0; j < 8; j++)
 		{
-			 digitalWrite(LED_pins[j], bitRead(code,j));
+			 digitalWrite(LED_pins[j], bitRead(col_code,j));
 		}
 		delayMicroseconds(time_del);
 	}
