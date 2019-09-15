@@ -1,7 +1,7 @@
 // Enter values of the pins to which LED's are connected, in order from the inner most to the outer most.
 int LED_pins[] = {1,2,3,4,5,6,7,8};
 
-// The following arrays contain the patter at which LED's must turn on or off for displaying particular characters.
+// Bit patterns to show which led's must be turned on to display particular character
 const unsigned char char_code[95][5] = {
          {0x00,0x00,0x00,0x00,0x00},   //   0x20 32
          {0x00,0x00,0x6f,0x00,0x00},   // ! 0x21 33
